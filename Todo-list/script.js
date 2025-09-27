@@ -14,5 +14,15 @@ addTaskButton.addEventListener("click", () => {
     completed: false,
   };
   tasks.push(data);
+  //since all the previous data of local storage is overridden completely when we update it,
+  //we can safely save the tasks to local storage without worrying about the data being copied multiple times
+  //as the previous data gets wiped out and then the new data gets updated.
+  saveToLocalStorage(tasks);
   input.value = ""; //clear the input box
 });
+
+function saveToLocalStorage(array) {
+  //since the local storage only accepts the key value pairs (both of them) in the form of strings,
+  //we have to convert the array to JSON format
+  localStorage.setItem("tasks", JSON.stringify(array));
+}
