@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       //updated data in the local storage.
       saveToLocalStorage();
     });
-    // if (task.completed) li.classList.toggle("completed");
+    if (task.completed) li.classList.add("completed");
     todoList.appendChild(li);
   }
 });
