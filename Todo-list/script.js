@@ -42,7 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
   <span>${task.text}</span>
   <button>Delete</button>
   `;
-    if (task.completed) li.classList.toggle("completed");
+    li.addEventListener("click", (event) => {
+      if (event.target.tagName === "BUTTON") return;
+      li.classList.toggle("completed");
+    });
+    // if (task.completed) li.classList.toggle("completed");
     todoList.appendChild(li);
   }
 });
