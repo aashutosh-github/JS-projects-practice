@@ -22,17 +22,17 @@ document.addEventListener("DOMContentLoaded", () => {
     //since all the previous data of local storage is overridden completely when we update it,
     //we can safely save the tasks to local storage without worrying about the data being copied multiple times
     //as the previous data gets wiped out and then the new data gets updated.
-    saveToLocalStorage(tasks);
+    saveToLocalStorage();
     input.value = ""; //clear the input box
     //new tasks are added to local storage but only get displayed once the DOM gets reloaded so we are
     //reloading the DOM after clicking on this button so that the list items show up.
     window.location.reload();
   });
 
-  function saveToLocalStorage(array) {
+  function saveToLocalStorage() {
     //since the local storage only accepts the key value pairs (both of them) in the form of strings,
     //we have to convert the array to JSON format
-    localStorage.setItem("tasks", JSON.stringify(array));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
   function displayTasks(task) {
@@ -44,7 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
     li.addEventListener("click", (event) => {
       if (event.target.tagName === "BUTTON") return;
+      task.completed = !task.completed;
       li.classList.toggle("completed");
+      //since some properties have been modified so now we need to again save the
+      //updated data in the local storage.
+      saveToLocalStorage();
     });
     // if (task.completed) li.classList.toggle("completed");
     todoList.appendChild(li);
