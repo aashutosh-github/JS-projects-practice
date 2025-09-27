@@ -31,7 +31,7 @@ body {
   background-color: var(--container-bg);
   height: auto;
   min-width: auto;
-  padding: 0.5rem 1rem 1rem 1rem;
+  padding: 0.5rem 1rem 0rem 1rem;
   border-radius: 10px;
   text-align: center;
 }
@@ -67,7 +67,7 @@ body {
 }
 
 #todo-list {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   height: auto;
   width: 100%;
 }
@@ -97,4 +97,9 @@ body {
   &:hover {
     background-color: var(--delete-btn-hover-color);
   }
+}
+
+li.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
