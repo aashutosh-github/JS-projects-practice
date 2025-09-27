@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   //local storage to this array
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
+  tasks.forEach((task) => displayTasks(task));
+
   addTaskButton.addEventListener("click", () => {
     const task = input.value.trim();
     if (task === "") return;
@@ -22,11 +24,25 @@ document.addEventListener("DOMContentLoaded", () => {
     //as the previous data gets wiped out and then the new data gets updated.
     saveToLocalStorage(tasks);
     input.value = ""; //clear the input box
+    //new tasks are added to local storage but only get displayed once the DOM gets reloaded so we are
+    //reloading the DOM after clicking on this button so that the list items show up.
+    window.location.reload();
   });
 
   function saveToLocalStorage(array) {
     //since the local storage only accepts the key value pairs (both of them) in the form of strings,
     //we have to convert the array to JSON format
     localStorage.setItem("tasks", JSON.stringify(array));
+  }
+
+  function displayTasks(task) {
+    const li = document.createElement("li");
+    li.setAttribute("data-id", task.id);
+    li.innerHTML = `
+  <span>${task.text}</span>
+  <button>Delete</button>
+  `;
+    if (task.completed) li.classList.toggle("completed");
+    todoList.appendChild(li);
   }
 });
