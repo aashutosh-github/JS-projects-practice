@@ -1,0 +1,50 @@
+:root {
+  --main-bg: #1a1a1a;
+  --container-bg: #222222;
+  --delete-btn-color: #f00;
+  --light-text-color: #d6d6d6da;
+  --main-text-color: #fff;
+  --placeholder-color: #454545;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--main-bg);
+  height: 100dvh;
+  width: 100dvw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: var(--container-bg);
+  min-height: auto;
+  min-width: auto;
+  padding: 0.5rem 1rem 1rem 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.container h1 {
+  color: var(--main-text-color);
+  margin-bottom: 0.5rem;
+}
+
+.input-container input {
+  background-color: var(--placeholder-color);
+  width: 10rem;
+  height: 2rem;
+  padding-left: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 10px;
+  border: none;
+  color: var(--light-text-color);
+}
