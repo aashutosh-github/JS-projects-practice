@@ -55,6 +55,7 @@ body {
 
 #add-task-btn {
   background-color: var(--add-task-btn-color);
+  cursor: pointer;
   height: 3rem;
   width: 5rem;
   font-size: 1rem;
@@ -87,6 +88,7 @@ body {
 }
 
 #todo-list button {
+  cursor: pointer;
   background-color: var(--delete-btn-color);
   border: none;
   padding: 0px 5px 0px 5px;
