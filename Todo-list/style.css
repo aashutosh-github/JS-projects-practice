@@ -51,6 +51,9 @@ body {
   border-radius: 10px;
   border: none;
   color: var(--light-text-color);
+  &:focus {
+    outline: 1px solid var(--light-text-color);
+  }
 }
 
 #add-task-btn {
