@@ -2,6 +2,7 @@
   --main-bg: #1a1a1a;
   --container-bg: #222222;
   --delete-btn-color: #f00;
+  --add-task-btn-color: #a200ff;
   --light-text-color: #d6d6d6da;
   --main-text-color: #fff;
   --placeholder-color: #454545;
@@ -35,16 +36,29 @@ body {
 
 .container h1 {
   color: var(--main-text-color);
-  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .input-container input {
   background-color: var(--placeholder-color);
-  width: 10rem;
-  height: 2rem;
-  padding-left: 0.5rem;
+  height: 3rem;
+  width: 15rem;
+  padding-left: 1.5rem;
   margin-right: 0.5rem;
   border-radius: 10px;
   border: none;
   color: var(--light-text-color);
+}
+
+#add-task-btn {
+  background-color: var(--add-task-btn-color);
+  height: 3rem;
+  width: 5rem;
+  font-size: 1rem;
+  color: var(--main-text-color);
+  font-weight: bolder;
+  border-radius: 10px;
+  padding: 0px 5px;
+  border: none;
 }
