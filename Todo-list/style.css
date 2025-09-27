@@ -6,6 +6,7 @@
   --light-text-color: #d6d6d6da;
   --main-text-color: #fff;
   --placeholder-color: #454545;
+  --list-item-color: #454545;
 }
 
 *,
@@ -27,7 +28,7 @@ body {
 
 .container {
   background-color: var(--container-bg);
-  min-height: auto;
+  height: auto;
   min-width: auto;
   padding: 0.5rem 1rem 1rem 1rem;
   border-radius: 10px;
@@ -61,4 +62,25 @@ body {
   border-radius: 10px;
   padding: 0px 5px;
   border: none;
+}
+
+#todo-list {
+  margin-top: 2rem;
+  height: auto;
+  width: 100%;
+}
+
+#todo-list li {
+  background-color: var(--list-item-color);
+  padding: 1rem 1rem 1rem 1rem;
+  margin: 0.5rem 0rem 1rem 0rem;
+  list-style: none;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: var(--main-text-color);
+  font-weight: bolder;
+  border-radius: 10px;
+  font-size: 1.2rem;
 }
