@@ -1,4 +1,5 @@
 :root {
+  --text-main-color: #fff;
   --main-bg: #1a1a1a;
 }
 
@@ -17,4 +18,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+h1 {
+  color: var(--text-main-color);
 }
