@@ -34,3 +34,9 @@ h1 {
   padding: 1rem;
   border-radius: 10px;
 }
+
+.input-container input {
+  height: 2rem;
+  border-radius: 5px;
+  padding-left: 10px;
+}
