@@ -1,6 +1,7 @@
 :root {
   --text-main-color: #fff;
   --main-bg: #1a1a1a;
+  --secondary-bg: #3a3a3a;
 }
 
 *,
@@ -22,4 +23,6 @@ body {
 
 h1 {
   color: var(--text-main-color);
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
 }
