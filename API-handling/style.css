@@ -63,7 +63,12 @@ h1 {
 }
 
 #weather-info {
-  background-color: yellow;
   color: black;
   margin-top: 1rem;
+}
+
+#weather-info h2 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
 }
