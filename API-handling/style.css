@@ -1,7 +1,9 @@
 :root {
+  --placeholder-color: #ffffffd2;
   --text-main-color: #fff;
+  --input-box-bg-color: #6b6b6b;
   --main-bg: #1a1a1a;
-  --secondary-bg: #3a3a3a;
+  --secondary-bg: #2f2f2f;
 }
 
 *,
@@ -39,4 +41,11 @@ h1 {
   height: 2rem;
   border-radius: 5px;
   padding-left: 10px;
+  background-color: var(--input-box-bg-color);
+  border: none;
+}
+
+.input-container input::placeholder {
+  color: var(--placeholder-color);
+  font-size: 1rem;
 }
