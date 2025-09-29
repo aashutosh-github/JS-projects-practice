@@ -36,6 +36,7 @@ h1 {
   text-align: center;
   padding: 1rem;
   border-radius: 10px;
+  width: clamp(22rem, 25rem, 27rem);
 }
 
 .input-container input {
@@ -71,4 +72,9 @@ h1 {
   font-size: 2rem;
   letter-spacing: 2px;
   margin-bottom: 10px;
+}
+
+#description {
+  background-color: yellow;
+  margin-top: 0.5rem;
 }
