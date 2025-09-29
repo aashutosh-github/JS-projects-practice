@@ -72,9 +72,15 @@ h1 {
   font-size: 2rem;
   letter-spacing: 2px;
   margin-bottom: 10px;
+  color: var(--text-main-color);
+}
+
+#temperature {
+  color: var(--text-main-color);
+  font-size: 1.5rem;
 }
 
 #description {
-  background-color: yellow;
+  color: var(--text-main-color);
   margin-top: 0.5rem;
 }
