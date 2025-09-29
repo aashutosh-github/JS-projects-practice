@@ -1,4 +1,5 @@
 :root {
+  --error-text: rgb(208, 19, 19);
   --button-color: #9500ffe6;
   --placeholder-color: #ffffffd2;
   --text-main-color: #fff;
@@ -83,4 +84,10 @@ h1 {
 #description {
   color: var(--text-main-color);
   margin-top: 0.5rem;
+}
+
+#error-message {
+  color: var(--error-text);
+  font-size: 1.5rem;
+  font-weight: bolder;
 }
