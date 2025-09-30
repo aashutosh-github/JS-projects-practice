@@ -14,7 +14,7 @@ const products = [
   { id: 3, name: "Product 3", price: 59.99 },
 ];
 
-const cart = [];
+let cart = [];
 let totalPrice = 0;
 
 for (const product of products) {
@@ -28,6 +28,7 @@ for (const product of products) {
 
 productList.addEventListener("click", (event) => {
   if (event.target.tagName === "BUTTON") {
+    //the getAttribute returns a string so parsing it to an integer
     const id = parseInt(event.target.getAttribute("data-id"));
     const product = products.find((product) => product.id === id);
     addToCart(product);
@@ -53,3 +54,13 @@ function renderCart() {
     totalPriceDisplay.innerText = `$${totalPrice}`;
   }
 }
+
+checkoutButton.addEventListener("click", () => {
+  totalPriceDisplay.innerText = "$0.00";
+  totalPrice = 0;
+  cart = [];
+  cartFinalList.innerHTML = "";
+  emptyCartMessage.classList.remove("hidden");
+  cartPriceContainer.classList.add("hidden");
+  alert("checked out successfully");
+});
