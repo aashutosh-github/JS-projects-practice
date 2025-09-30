@@ -1,7 +1,8 @@
 const productList = document.querySelector("#product-list");
 const cartItems = document.querySelector("#cart-items");
 const emptyCartMessage = document.querySelector("#empty-cart");
-const cartTotalMessage = document.querySelector("#cart-total");
+const cartFinalList = document.querySelector("#cart-total-list");
+const cartPriceContainer = document.querySelector("#cart-total");
 const totalPriceDisplay = document.querySelector("#total-price");
 const checkoutButton = document.querySelector("#checkout-btn");
 
@@ -14,6 +15,7 @@ const products = [
 ];
 
 const cart = [];
+let totalPrice = 0;
 
 for (const product of products) {
   const productDiv = document.createElement("div");
@@ -22,4 +24,32 @@ for (const product of products) {
   <span>${product.name} - $${product.price.toFixed(2)}</span>
   <button data-id="${product.id}">Add to cart</button>`;
   productList.appendChild(productDiv);
+}
+
+productList.addEventListener("click", (event) => {
+  if (event.target.tagName === "BUTTON") {
+    const id = parseInt(event.target.getAttribute("data-id"));
+    const product = products.find((product) => product.id === id);
+    addToCart(product);
+  }
+});
+
+function addToCart(product) {
+  cart.push(product);
+  renderCart();
+}
+
+function renderCart() {
+  if (cart.length > 0) {
+    emptyCartMessage.classList.add("hidden");
+    cartPriceContainer.classList.remove("hidden");
+    let item = cart[cart.length - 1];
+    totalPrice += item.price;
+    const div = document.createElement("div");
+    div.classList.add("product");
+    div.innerHTML = `
+        <span>${item.name} - $${item.price.toFixed(2)}</span>`;
+    cartFinalList.appendChild(div);
+    totalPriceDisplay.innerText = `$${totalPrice}`;
+  }
 }
