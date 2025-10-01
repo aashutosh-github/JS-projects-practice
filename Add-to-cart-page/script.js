@@ -84,13 +84,22 @@ cartFinalList.addEventListener("click", (event) => {
     ).toFixed(2);
     totalPriceDisplay.innerText = `$${(totalPriceRendered - price).toFixed(2)}`;
     const parentDiv = event.target.parentElement;
-    cart = cart.filter((item) => item.id !== id);
+    //normal filter was making it such that multiple instances of the same product in cart were filtered
+    //at once therefore buttons were visible but local storage was emptied.
+    let removed = false;
+    cart = cart.filter((item) => {
+      if (item.id === id && !removed) {
+        removed = true;
+        return false;
+      }
+      return true;
+    });
     saveCartToLocalStorage();
+    if (cart.length === 0) {
+      localStorage.clear();
+      cartPriceContainer.classList.add("hidden");
+      emptyCartMessage.classList.remove("hidden");
+    }
     parentDiv.remove();
   }
 });
-
-//TODO: make sure that the items added to cart persist after refreshing the page and also that the
-//items in cart have a delete button as well. Add an event listener for delegating listeners
-//on the cart-total-list. Take the id from the dataset and then get its value from the products array
-//and subtract the value from totalPrice.
