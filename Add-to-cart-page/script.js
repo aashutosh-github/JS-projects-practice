@@ -14,8 +14,10 @@ const products = [
   { id: 3, name: "Product 3", price: 59.99 },
 ];
 
-let cart = [];
-let totalPrice = 0;
+let cart = JSON.parse(localStorage.getItem("cartItemsSaved")) || [];
+if (cart.length) {
+  renderCart();
+}
 
 for (const product of products) {
   const productDiv = document.createElement("div");
@@ -37,30 +39,43 @@ productList.addEventListener("click", (event) => {
 
 function addToCart(product) {
   cart.push(product);
+  saveCartToLocalStorage();
   renderCart();
 }
 
 function renderCart() {
-  if (cart.length > 0) {
-    emptyCartMessage.classList.add("hidden");
-    cartPriceContainer.classList.remove("hidden");
-    let item = cart[cart.length - 1];
+  let totalPrice = 0;
+  cartFinalList.innerHTML = "";
+  emptyCartMessage.classList.add("hidden");
+  cartPriceContainer.classList.remove("hidden");
+  cart.forEach((item) => {
     totalPrice += item.price;
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `
-        <span>${item.name} - $${item.price.toFixed(2)}</span>`;
+        <span>${item.name} - $${item.price.toFixed(2)}</span>
+        <button data-id="${item.id}">Delete</button>`;
     cartFinalList.appendChild(div);
-    totalPriceDisplay.innerText = `$${totalPrice}`;
-  }
+    totalPriceDisplay.innerText = `$${totalPrice.toFixed(2)}`;
+  });
 }
 
 checkoutButton.addEventListener("click", () => {
   totalPriceDisplay.innerText = "$0.00";
   totalPrice = 0;
   cart = [];
+  localStorage.clear();
   cartFinalList.innerHTML = "";
   emptyCartMessage.classList.remove("hidden");
   cartPriceContainer.classList.add("hidden");
   alert("checked out successfully");
 });
+
+function saveCartToLocalStorage() {
+  localStorage.setItem("cartItemsSaved", JSON.stringify(cart));
+}
+
+//TODO: make sure that the items added to cart persist after refreshing the page and also that the
+//items in cart have a delete button as well. Add an event listener for delegating listeners
+//on the cart-total-list. Take the id from the dataset and then get its value from the products array
+//and subtract the value from totalPrice.
