@@ -75,6 +75,21 @@ function saveCartToLocalStorage() {
   localStorage.setItem("cartItemsSaved", JSON.stringify(cart));
 }
 
+cartFinalList.addEventListener("click", (event) => {
+  if (event.target.tagName === "BUTTON") {
+    const id = parseInt(event.target.dataset.id);
+    const price = parseFloat(cart.find((p) => p.id === id).price).toFixed(2);
+    const totalPriceRendered = parseFloat(
+      totalPriceDisplay.innerText.slice(1)
+    ).toFixed(2);
+    totalPriceDisplay.innerText = `$${(totalPriceRendered - price).toFixed(2)}`;
+    const parentDiv = event.target.parentElement;
+    cart = cart.filter((item) => item.id !== id);
+    saveCartToLocalStorage();
+    parentDiv.remove();
+  }
+});
+
 //TODO: make sure that the items added to cart persist after refreshing the page and also that the
 //items in cart have a delete button as well. Add an event listener for delegating listeners
 //on the cart-total-list. Take the id from the dataset and then get its value from the products array
