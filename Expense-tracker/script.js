@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const expenseList = document.querySelector("#expense-list");
   const totalAmountDisplay = document.querySelector("#total-amount");
 
-  let expenses = JSON.parse(localStorage.getItem("items")) || [];
+  let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+  renderExpenses();
   let totalAmount = calculateTotal();
 
   function saveToLocalStorage() {
@@ -19,6 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateTotal() {
     totalAmount = calculateTotal();
     totalAmountDisplay.textContent = totalAmount.toFixed(2);
+  }
+
+  function renderExpenses() {
+    expenseList.innerHTML = "";
+    expenses.forEach((expense) => {
+      const li = document.createElement("li");
+      expenseList.appendChild(li);
+      li.innerHTML = `
+        ${expense.name} - $${expense.amount}
+        <button data-id="${expense.id}">Delete</button>
+        `;
+    });
   }
 
   expenseForm.addEventListener("submit", (event) => {
@@ -37,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       expenses.push(newExpense);
       saveToLocalStorage();
+      renderExpenses();
       updateTotal();
 
       //clear the input fields
