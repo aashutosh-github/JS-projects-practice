@@ -13,7 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function calculateTotal() {
-    //code here
+    return expenses.reduce((sum, expense) => sum + expense.amount, 0);
+  }
+
+  function updateTotal() {
+    totalAmount = calculateTotal();
+    totalAmountDisplay.textContent = totalAmount.toFixed(2);
   }
 
   expenseForm.addEventListener("submit", (event) => {
@@ -32,6 +37,9 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       expenses.push(newExpense);
       saveToLocalStorage();
+      updateTotal();
+
+      //clear the input fields
       expenseAmount.value = "";
       expenseName.value = "";
     }
