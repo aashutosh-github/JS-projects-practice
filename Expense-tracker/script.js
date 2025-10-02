@@ -1,0 +1,39 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const expenseForm = document.querySelector("#expense-form");
+  const expenseName = document.querySelector("#expense-name");
+  const expenseAmount = document.querySelector("#expense-amount");
+  const expenseList = document.querySelector("#expense-list");
+  const totalAmountDisplay = document.querySelector("#total-amount");
+
+  let expenses = JSON.parse(localStorage.getItem("items")) || [];
+  let totalAmount = calculateTotal();
+
+  function saveToLocalStorage() {
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+  }
+
+  function calculateTotal() {
+    //code here
+  }
+
+  expenseForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = expenseName.value.trim();
+    const amount = parseFloat(expenseAmount.value.trim());
+
+    if (name !== "" && !isNaN(amount) && amount > 0) {
+      const newExpense = {
+        id: Date.now(),
+        //the below format means assign the name variable to the name key
+        //so it is the same as name: name, amount: amount
+        name,
+        amount,
+      };
+      expenses.push(newExpense);
+      saveToLocalStorage();
+      expenseAmount.value = "";
+      expenseName.value = "";
+    }
+  });
+});
