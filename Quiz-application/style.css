@@ -1,5 +1,6 @@
 :root {
-  --button-color: #8900f9;
+  --btn-hover-color: #3700ff;
+  --button-color: #9500ff;
   --main-text-color: #fff;
   --main-bg-color: #1a1a1a;
   --secondary-bg-color: #2a2a2a;
@@ -23,7 +24,7 @@ body {
 }
 
 .container {
-  width: clamp(20rem, 22rem, 25rem);
+  width: clamp(22rem, 26rem, 30rem);
   text-align: center;
   padding: 0.5rem 1rem;
   border-radius: 10px;
@@ -44,6 +45,33 @@ body {
   border-radius: 5px;
   font-size: 1rem;
   margin-bottom: 0.5rem;
+  &:hover {
+    background-color: var(--btn-hover-color);
+  }
+}
+
+#question-text {
+  font-size: 2rem;
+  line-height: 2rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+}
+
+#choices-list {
+  list-style: none;
+  padding: 0.3rem;
+  margin-bottom: 5px;
+}
+
+#choices-list li {
+  background-color: var(--lighter-dark-bg);
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0.8rem 0rem;
+  font-size: 1.5rem;
+  &:hover {
+    background-color: var(--button-color);
+  }
 }
 
 .hidden {
