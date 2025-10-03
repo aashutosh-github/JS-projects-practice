@@ -77,3 +77,13 @@ body {
 .hidden {
   display: none;
 }
+
+#result-container h2 {
+  font-size: 2rem;
+  margin-bottom: 0.1rem;
+}
+
+#score {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
