@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function startQuiz() {
     startButton.classList.add("hidden");
+    nextButton.classList.remove("hidden");
     questionContainer.classList.remove("hidden");
     showQuestions();
   }
@@ -74,11 +75,17 @@ document.addEventListener("DOMContentLoaded", () => {
     choicesList.innerHTML = "";
     for (const choice of questions[currentQuestionIndex].choices) {
       const li = document.createElement("li");
+      li.classList.add("hover");
       li.textContent = choice;
       //using the callback here because we cannot directly use the () after the function otherwise it
       //will run immediately, so defining an anonymous function that internally calls the function with
       //the provided argument
-      li.addEventListener("click", () => selectAnswer(choice));
+      li.addEventListener("click", (event) => {
+        selectAnswer(choice);
+        event.target.classList.add("selected");
+        event.target.classList.remove("hover");
+      });
+
       choicesList.appendChild(li);
     }
   }
