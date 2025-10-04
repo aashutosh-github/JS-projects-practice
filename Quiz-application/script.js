@@ -36,6 +36,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startButton.addEventListener("click", startQuiz);
 
+  nextButton.addEventListener("click", showNextQuestion);
+
+  restartButton.addEventListener("click", restartQuiz);
+
+  function showNextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestions();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    questionContainer.classList.add("hidden");
+    resultContainer.classList.remove("hidden");
+    scoreDisplay.textContent = `${score} out of ${questions.length}`;
+  }
+
+  function restartQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    resultContainer.classList.add("hidden");
+    startQuiz();
+  }
+
   function startQuiz() {
     startButton.classList.add("hidden");
     questionContainer.classList.remove("hidden");
@@ -48,8 +74,20 @@ document.addEventListener("DOMContentLoaded", () => {
     choicesList.innerHTML = "";
     for (const choice of questions[currentQuestionIndex].choices) {
       const li = document.createElement("li");
-      li.innerText = `${choice}`;
+      li.textContent = choice;
+      //using the callback here because we cannot directly use the () after the function otherwise it
+      //will run immediately, so defining an anonymous function that internally calls the function with
+      //the provided argument
+      li.addEventListener("click", () => selectAnswer(choice));
       choicesList.appendChild(li);
     }
+  }
+
+  function selectAnswer(choice) {
+    const correctAnswer = questions[currentQuestionIndex].answer;
+    if (choice === correctAnswer) {
+      score++;
+    }
+    nextButton.classList.remove("hidden");
   }
 });
