@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const restartButton = document.querySelector("#restart-btn");
   const startButton = document.querySelector("#start-btn");
 
+  let currentQuestionIndex = 0;
+  let score = 0;
+
   const questions = [
     {
       question: "What is the capital of France ?",
@@ -30,4 +33,23 @@ document.addEventListener("DOMContentLoaded", () => {
       answer: "William Shakespeare",
     },
   ];
+
+  startButton.addEventListener("click", startQuiz);
+
+  function startQuiz() {
+    startButton.classList.add("hidden");
+    questionContainer.classList.remove("hidden");
+    showQuestions();
+  }
+
+  function showQuestions() {
+    questionText.textContent = questions[currentQuestionIndex].question;
+    //clearing this so that the next question does not have the previous choices
+    choicesList.innerHTML = "";
+    for (const choice of questions[currentQuestionIndex].choices) {
+      const li = document.createElement("li");
+      li.innerText = `${choice}`;
+      choicesList.appendChild(li);
+    }
+  }
 });
